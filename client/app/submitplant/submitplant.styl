@@ -1,0 +1,70 @@
+.allContainer > .contentContainer > .submitForm
+    
+    &>.descriptionContainer div
+        &>md-input-container
+            width 100%
+            &>textarea
+                min-height 100px
+                height 100px
+                width 100%
+            &>input
+                width 100%
+    &>.imageContainer
+        margin-top 1em
+        &>.userImageContainer > .contImg {
+            &>.userImage div {
+                position relative
+                padding 1em
+                &>img {
+                    max-height: 200px;
+                    max-width: 200px;
+                    height: 200px;
+                    width: 200px;
+                    margin: 0 0.2em
+                    border-radius 20px                    
+                }
+                
+                &>.md-button {
+                    position absolute
+                    bottom 0
+                    right 0
+                    
+                    &>md-icon {
+                        color COLOR_PRIMARY
+                    }
+                }                
+            }
+            
+            &>.iconPreview {
+                height: 200px;
+                width: 200px;
+                border-radius: 50%;
+                background-color: COLOR_GRAY;
+                position: relative;
+                &>md-icon {
+                    font-size: 10em;
+                    position: absolute;
+                    color: COLOR_PRIMARY
+                    top: 15px;
+                    left: 20px;
+                }
+            }
+            
+
+            &>.userSubmitImage {
+                margin-top: 1em;
+
+                &>.submitButton {
+                    text-transform: capitalize;
+                    &>label {
+                        &>md-icon {
+                            cursor: pointer;
+                            margin-right: 0.3em;
+                        }
+                        &>span {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }

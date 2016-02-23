@@ -1,0 +1,53 @@
+<div class="allContainer" layout="column">
+  <header></header>
+  <navbar></navbar>
+  <div class="contentContainer" layout="column">
+    <div class="filter" layout="column" layout-align="stretch">
+        <h2 layout="row" layout-align="center">
+          Busca una planta
+        </h2>
+      <form name="searchFilter"
+        ng-submit="main.search(main.theSearch)"
+        layout="column"
+        layout-align="stretch center">
+        <md-input-container class="md-primary">
+          <label>Buscar</label>
+          <input
+            class="texto"
+            id="Texto"
+            ng-model="main.theSearch"
+            ng-model-options="{ debounce: 300 }"
+            autofocus
+            minlength="3"
+            autocomplete="off"
+            name="query"/>
+          <div ng-messages="searchFilter.query.$error">
+              <div ng-message="minlength">
+                Búsqueda inválida
+              </div>
+          </div>  
+        </md-input-container> 
+      </form>  
+    </div>
+    
+    <div class="searchResults" layout="row" layout-align="center center" layout-wrap>
+      <md-content class="cardContainer" flex="30" ng-repeat="plant in main.searchResults | orderBy: identificacion.familia">  
+        <a href="" ui-sref="plantDescription({id:plant._id})">
+          <md-card>
+            <img src="{{ plant.foto.imagenUrl[0] }}" class="md-card-image">
+            <md-card-content>
+              <p class="md-headline">{{ plant.identificacion.epiteto }}</p>
+              <span class="md-subhead">{{ plant.identificacion.familia }} - {{ plant.identificacion.genero }}</span>
+            </md-card-content>
+          </md-card>
+        </a>  
+      </md-content>
+    </div>
+
+    <div class="addPlant" ng-if="nav.isLoggedIn()">
+      <md-button class="md-fab" ui-sref="submitplant">
+        <md-icon>add</md-icon>
+      </md-button>  
+    </div> 
+  </div>       
+</div>

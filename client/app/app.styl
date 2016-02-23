@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+//
+// App-wide Styles
+//
+
+.browserupgrade
+  background #ccc
+  color #000
+  margin 0.2em 0
+  padding 0.2em 0
+
+// Responsive: Portrait tablets and up
+@media screen and (min-width: 768px)
+  .container
+    max-width 730px
+    
+//
+// variable colors
+//
+
+COLOR_PRIMARY = #27ae60
+COLOR_PRIMARY_DARKER = #19703e
+COLOR_PRIMARY_BRIGTHER = #69F0AE
+
+COLOR_SECONDARY = #1abc9c
+
+
+COLOR_GRAY = #F5F6FA
+COLOR_GRAY_DARKER = #545454
+COLOR_GRAY_DISABLED = #7f8c8d
+COLOR_GRAY_TEXT = #bdc3c7
+
+COLOR_WHITE = #FFF
+
+COLOR_BLACK = #000
+
+// Component styles are injected through grunt
+// injector
+@import 'account/login/login.styl';
+@import 'account/settings/settings.styl';
+@import 'account/signup/signup.styl';
+@import 'admin/admin.styl';
+@import 'main/main.styl';
+@import 'plantDescription/plantDescription.styl';
+@import 'submitplant/submitplant.styl';
+@import '../components/footer/footer.styl';
+@import '../components/header/header.styl';
+@import '../components/navbar/navbar.styl';
+@import '../components/oauth-buttons/oauth-buttons.styl';
+// endinjector

@@ -1,0 +1,44 @@
+<div class="allContainer">
+  <header></header>
+  <navbar></navbar>
+  <div class="contentContainer settingsContainer">
+    <div layout="column" layout-align="center center">
+      <h1>Cambiar contraseña</h1>
+    </div>
+    <form class="settingsForm" name="settingsForm" ng-model="vm.changePassword(settinfsForm)" novalidate layout="column" layout-align="center center">
+      <md-input-container>
+        <label>Contraseña actual</label>
+        <input type="password" name="currentPassword" ng-model="vm.user.oldPassword" required mongoose-error>
+        <div ng-messages="settingsForm.currentPassword.$error">          
+          <div ng-message="required">Por favor ingrese su contraseña actual</div>
+          <div ng-message="mongoose"> {{vm.errors.other}} </div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Nueva contraseña</label>
+        <input type="password" name="newPassword" ng-model="vm.user.newPassword" required ng-minlength="3">
+        <div ng-messages="settingsForm.newPassword.$error" >          
+          <div ng-message="required">Por favor ingresa tu nueva contraseña</div>
+          <div ng-message="minlength">La contraseña debe tener al menos 5 caracteres</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Confirma tu nueva contraseña</label>
+        <input type="password" name="confirmPassword" ng-model="vm.user.confirmPassword" match="vm.user.confirmPassword" required ng-minlength="3">
+        <div ng-messages="settingsForm.confirmPassword.$error">          
+          <div ng-message="required">Por favor ingresa tu nueva contraseña</div>
+          <div ng-message="min-length">La contraseña debe tener al menos 5 caracteres</div>
+          <div ng-message="match" ng-if="vm.submitted">Las contraseñas deben coincidir</div>
+        </div>
+      </md-input-container>
+
+      <p class="help-block"> {{ vm.message }} </p>
+
+      <div class="submitButton" layout="row">
+        <md-button class="md-raised" type="submit">
+          Guardar cambios
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>   

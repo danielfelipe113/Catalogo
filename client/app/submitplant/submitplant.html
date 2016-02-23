@@ -1,0 +1,110 @@
+<div class="allContainer">
+    <header></header>
+    <navbar></navbar>
+    <div class="contentContainer">
+        <form class="submitForm" name="submitForm" ng-submit="submitPlant.submit(submitForm)" novalidate layout="column">
+            <div layout="row" layout-align="center center"><h1>Ingresa la información de la especie</h1></div>
+            <div class="identificationContainer" layout="row" layout-align="space-around center">   
+                
+                <div class="submitLeft" layout="column">
+                    <md-input-container>
+                        <label>Familia *</label>
+                        <input type="text" name="familia" ng-model="submitPlant.plant.identificacion.familia" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Género *</label>
+                        <input type="text" name="genero" ng-model="submitPlant.plant.identificacion.genero" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Epíteto *</label>
+                        <input type="text" name="epiteto" ng-model="submitPlant.plant.identificacion.epiteto" required>
+                    </md-input-container>
+                </div>
+                <div class="submitRight" layout="column">
+                    <md-input-container>
+                        <label>Nombre común *</label>
+                        <input type="text" name="nombreComun" ng-model="submitPlant.plant.identificacion.nombreComun">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Autor *</label>
+                        <input type="text" name="autor" ng-model="submitPlant.plant.identificacion.autor" required>
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div class="whereContainer" layout="row" layout-align="center center">
+                <fieldset >
+                    <legend>Sede *</legend>
+                    <div layout="row" layout-align="space-between center" layout-wrap required>
+                        <md-checkbox class="md-primary" ng-checked="submitPlant.existsInSede(sede)" aria-label="{{ sede }}" ng-click="submitPlant.existsInSede.toggleSelection(sede)"  ng-repeat="sede in submitPlant.sedes">
+                            {{ sede }}
+                        </md-checkbox>
+                    </div>
+                </fieldset>
+            </div>
+            
+            <div class="imageContainer" layout="column" layout-align="center center">
+                <div class="userImageContainer" layout="column" layout-align="center center">
+                  <div class="contImg" layout="row" layout-align="center center" layout-wrap>
+                    <div class="userImage" ng-repeat="image in submitPlant.plantImages" ng-if="submitPlant.hasImage() === true">
+                        <div>
+                            <md-button class="md-icon-button" ng-click="submitPlant.deleteImage($index)"><md-icon>delete</md-icon></md-button>
+                            <img ngf-src="image" alt="plant" ngf-background="submitPlant.plantImages">
+                        </div>
+                    </div>
+                    <div class="iconPreview" layout="column" layout-align="center center" ng-if="submitPlant.hasImage() === false">
+                      <md-icon>backup</md-icon>
+                    </div>
+                  </div>
+
+                  <div class="userSubmitImage" ngf-select ng-model="submitPlant.imagess" ng-change="submitPlant.uploadImages()" ngf-multiple="true" ngf-max-size="10MB" ngf-accept="'image/*'" required>     
+                    <md-button class="submitButton md-raised">
+                      <label layout="row" layout-align="center center" >
+                        <md-icon>add_a_photo</md-icon>
+                        <span>Cargar foto</span>
+                      </label>                  
+                    </md-button>
+                  </div>
+                </div>
+              
+                <md-input-container>
+                    <label>Crédito de la imagen *</label>
+                    <input type="text" name="creditoImagen" ng-model="submitPlant.plant.foto.creditoFoto" required>
+                </md-input-container>
+            </div>
+            
+            <div class="descriptionContainer" layout="row" layout-align="space-around center">
+                <div flex="40">
+                    <md-input-container>
+                        <label>Descripción</label>
+                        <textarea name="descripcion" rows="5" ng-model="submitPlant.plant.descripcion" md-maxlength="300"></textarea>
+                    </md-input-container>                   
+                </div>
+                <div flex="40">
+                    <md-input-container>
+                        <label>Usos de la planta, separa cada uso con una coma ','</label>
+                        <textarea ng-model="submitPlant.uses">
+                        </textarea>
+                    </md-input-container>   
+                </div>
+            </div>
+            
+            <div class="positionContainer" layout="column" layout-align="space-around center">
+                <p>Separe cada coordenada con una coma ','</p>
+                <md-input-container>
+                    <label>Latitud</label>
+                    <input type="text" name="latitud" ng-model="submitPlant.coord.lat">
+                </md-input-container>
+                <md-input-container>
+                    <label>Longitud</label>
+                    <input type="text" name="longitud" ng-model="submitPlant.coord.lng">
+                </md-input-container>
+            </div>
+            
+            
+            <div class="buttonContainer" layout="row" layout-align="center center">
+                <md-button type="submit" class="md-raised" ng-disabled="!submitForm.$valid">Enviar</md-button>      
+            </div>
+        </form>
+    </div>
+</div>

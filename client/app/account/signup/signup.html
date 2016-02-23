@@ -1,0 +1,68 @@
+<div class="allContainer">
+  <header></header>
+  <navbar></navbar>
+  <div class="contentContainer">
+    <div class="textsContainer" layout="column" layout-align="center center">
+      <h1>Regístrate</h1>
+      <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
+      <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>
+    </div>
+    <form class="registerForm" name="form" ng-submit="vm.register(form)" novalidate  layout="column" flex="40">
+      <md-input-container>
+        <label>Nombre</label>
+        <input class="name" type="text" name="name" ng-model="vm.user.name"
+               required/>
+        <div ng-messages="form.name.$error">
+          <div ng-message="required">Escribe tu nombre</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Correo electrónico</label>
+        <input type="email" name="email" ng-model="vm.user.email" required mongoose-error/>
+        <div ng-messages="form.email.$error">
+          <div ng-message="required">Escribe tu correo electrónico</div>
+          <div ng-message="email">Escribe un correo electrónico válido</div>  
+          <div class="error" ng-show="form.email.$error.mongoose && vm.submitted">
+          {{ vm.errors.email }}</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" name="password" ng-model="vm.user.password"
+               ng-minlength="3" required mongoose-error/>
+        <div ng-messages="form.password.$error" class="help-block">
+          <div ng-message="required">Escribe tu contraseña</div>
+          <div class="error" ng-show="form.password.$error.mongoose && vm.submitted">
+            {{ vm.errors.password }}
+          </div>
+        </div>          
+      </md-input-container>
+
+      <md-input-container>
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
+               match="vm.user.password"
+               ng-minlength="3" required/>
+        <div ng-messages="form.password.$error">
+          <div ng-message="required">Escribe tu contraseña de nuevo</div>
+          <div class="error" ng-show="form.confirmPassword.$error.match && vm.submitted">
+            Las contraseñas deben coincidir
+          </div>
+        </div>          
+      </md-input-container>
+
+      <div class="buttons" layout="row" layout-align="center center">
+        <md-button class="md-raised" type="submit">
+          Registrarse
+        </md-button>
+        <md-button class="md-raised" ui-sref="login">
+          Iniciar sesión
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

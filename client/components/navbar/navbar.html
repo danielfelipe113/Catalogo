@@ -1,0 +1,66 @@
+<div class="navbar" ng-controller="NavbarController">
+  <div layout="row" layout-align="space-between center">
+    <div>
+      <md-button class="md-fab homeButton" href="/">
+        <md-icon>home</md-icon>
+      </md-button>
+      <md-menu md-position-mode="target-right target">
+        <md-button class="menuButton md-fab" aria-label="Menu de opciones" class="md-fab" ng-click="$mdOpenMenu($event)">
+          <md-icon aria-label="Menú">view_headline</md-icon>
+        </md-button>
+
+        <md-menu-content class="navbarMenuContent" width="4">        
+
+          <md-menu-item ng-if="!nav.isLoggedIn()">
+            <md-button ui-sref="login" layout="row" layout-align="start center">
+              <span>
+                <md-icon>local_cafe</md-icon>
+                <p>Iniciar sesion</p>
+              </span>
+            </md-button>  
+          </md-menu-item>
+
+          <md-menu-item ng-if="!nav.isLoggedIn()" layout="row">
+            <md-button ui-sref="signup" layout="row" layout-align="start center">
+              <span>
+                <md-icon>directions_walk</md-icon>
+                <p>Registrate</p>
+              </span>
+            </md-button>  
+          </md-menu-item>
+
+          <md-menu-item class="userName" ng-if="nav.isLoggedIn()">
+            <p layout="row" layout-align="center center">Hola {{ nav.getCurrentUser().name }}</p>  
+          </md-menu-item>
+
+          <md-menu-item ng-if="nav.isAdmin()">
+            <md-button ui-sref="admin" layout="row" layout-align="start center">
+              <span>
+                <md-icon>settings_applications</md-icon>
+                <p>Administracion</p>
+              </span>
+            </md-button>  
+          </md-menu-item> 
+
+          <md-menu-item ng-if="nav.isLoggedIn()">
+            <md-button  ui-sref="settings" layout="row" layout-align="start center">
+              <span>
+                <md-icon>settings</md-icon>
+                <p>Configuración</p>
+              </span>
+            </md-button>  
+          </md-menu-item>  
+
+          <md-menu-item ng-if="nav.isLoggedIn()">
+            <md-button ui-sref="logout" layout="row" layout-align="start center">
+              <span>
+              <md-icon>local_hotel</md-icon>  
+                <p>Cerrar sesion</p>
+              </span>
+            </md-button>  
+          </md-menu-item>            
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
+</div>

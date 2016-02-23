@@ -1,0 +1,37 @@
+<div class="allContainer">
+  <header></header>
+  <navbar></navbar>
+  <div class="contentContainer loginContainer">
+    <div class="titleContainer" layout="column" layout-align="center center">
+      <h1>Iniciar sesión</h1>
+      <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
+      <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>
+    </div>
+    <form class="loginForm" name="form" ng-submit="vm.login(form)" novalidate layout="column" layout-align="center center">
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" name="email" ng-model="vm.user.email" required>
+        <div ng-messages="form.email.$error">          
+          <div ng-message="email">Ingrese un email válido</div>
+          <div ng-message="required">Por favor ingrese su email</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" name="password" ng-model="vm.user.password" required>
+        <div ng-messages="form.password.$error">          
+          <div ng-message="required">Por favor ingrese su contraseña</div>
+        </div>
+      </md-input-container>
+      <div class="buttons" layout="row">
+        <md-button class="md-raised" type="submit">
+          Iniciar sesión
+        </md-button>
+        <md-button class="md-raised" ui-sref="signup">
+          Registrarse
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

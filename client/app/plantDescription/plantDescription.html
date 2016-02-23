@@ -1,0 +1,61 @@
+<div class="allContainer" layout="column">
+    <header></header>
+    <navbar></navbar>
+    <div class="contentContainer" layout="row" layout-align="center center">
+        <div class="plant" layout="column" flex="90" layout-align="center">
+            <div class="identification" layout="column" layout-align="center center">
+                <div class="specieName" layout="column" layout-align="center center">
+                    <h1 class="specie"> {{ plantDescription.plant.identificacion.epiteto }} </h1>
+                    <p class="commonName"> {{ plantDescription.plant.identificacion.nombreComun }} </p>
+                </div>
+                <div class="familyGender">
+                    <p> {{ plantDescription.plant.identificacion.familia }} - {{ plantDescription.plant.identificacion.genero }} </p>
+                </div>
+                <div class="author">
+                    <p> {{ plantDescription.plant.identificacion.autor }} </p>
+                </div>
+            </div>
+            <div class="plantContainer" layout="row" layout-align="space-between start">
+                <div class="plantTexts" flex="55">
+                    <div class="descripcionContainer">
+                        <p> {{ plantDescription.plant.descripcion }} </p>
+                    </div>
+                    <div class="usos" layout="column">
+                        Usos:
+                        <div layout="row">
+                            <p ng-repeat="item in plantDescription.plant.usos">{{item}}</p>
+                        </div>
+                    </div>
+                    <div class="sede" layout="column">
+                        Sedes donde se puede encontrar:
+                        <div layout="row">
+                            <p ng-repeat="sede in plantDescription.plant.sede"> {{ sede }} </p>
+                        </div>
+                    </div>                    
+                </div>
+                <div flex="10"></div>
+                <div class="plantPicture md-whiteframe-2dp" flex="35">
+                    <div class="image" layout="row" layout-align="space-around center" layout-wrap>
+                        <img ng-repeat="item in plantDescription.plant.foto.imagenUrl" src="{{item}}">
+                    </div>
+                    <div class="autor" layout="row" layout-align="center center">
+                        <p class="pictureAuthor"> {{ plantDescription.plant.foto.creditoFoto }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="user" layout="column" layout-align="center end">
+                <p>Subido por:</p>
+                <div class="userInformation" layout="column" layout-align="center end">
+                    <p> {{ plantDescription.plant.usuario.nombre }} </p>
+                    <p> {{ plantDescription.plant.usuario.correo }} </p>
+                </div>
+            </div>
+        </div>
+        <div class="addPlant" ng-if="nav.isLoggedIn()">
+          <md-button class="md-fab" ui-sref="submitplant" aria-label="addPlant">
+            <md-icon>add</md-icon>
+          </md-button>  
+        </div> 
+    </div>
+</div>
+
