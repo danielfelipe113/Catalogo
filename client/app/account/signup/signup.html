@@ -7,7 +7,7 @@
       <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
       <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>
     </div>
-    <form class="registerForm" name="form" ng-submit="vm.register(form)" novalidate  layout="column" flex="40">
+    <form class="registerForm" name="form" ng-submit="vm.register(form)" novalidate  layout="column" flex="90" flex-gt-sm="40">
       <md-input-container>
         <label>Nombre</label>
         <input class="name" type="text" name="name" ng-model="vm.user.name"
@@ -31,12 +31,13 @@
       <md-input-container>
         <label>Password</label>
         <input type="password" name="password" ng-model="vm.user.password"
-               ng-minlength="3" required mongoose-error/>
+               ng-minlength="5" required mongoose-error/>
         <div ng-messages="form.password.$error" class="help-block">
           <div ng-message="required">Escribe tu contraseña</div>
           <div class="error" ng-show="form.password.$error.mongoose && vm.submitted">
             {{ vm.errors.password }}
           </div>
+          <div ng-message="minlength">La contraseña debe tener al menos 5 caracteres</div>
         </div>          
       </md-input-container>
 
@@ -44,14 +45,17 @@
         <label>Confirm Password</label>
         <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
                match="vm.user.password"
-               ng-minlength="3" required/>
+               ng-minlength="5" required/>
         <div ng-messages="form.password.$error">
           <div ng-message="required">Escribe tu contraseña de nuevo</div>
-          <div class="error" ng-show="form.confirmPassword.$error.match && vm.submitted">
-            Las contraseñas deben coincidir
-          </div>
+          <div ng-messages="match" ng-show="vm.submitted">Las contraseñas deben coincidir</div>
+          <div ng-message="minlength">La contraseña debe tener al menos 5 caracteres</div>
         </div>          
       </md-input-container>
+      
+      <div layout="row" layout-align="center center">
+        <md-progress-circular md-mode="{{vm.progress}}" ng-show="vm.progress"></md-progress-circular>
+      </div>
 
       <div class="buttons" layout="row" layout-align="center center">
         <md-button class="md-raised" type="submit">

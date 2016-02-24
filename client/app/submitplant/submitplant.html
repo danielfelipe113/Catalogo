@@ -4,7 +4,7 @@
     <div class="contentContainer">
         <form class="submitForm" name="submitForm" ng-submit="submitPlant.submit(submitForm)" novalidate layout="column">
             <div layout="row" layout-align="center center"><h1>Ingresa la información de la especie</h1></div>
-            <div class="identificationContainer" layout="row" layout-align="space-around center">   
+            <div class="identificationContainer" layout="column" layout-gt-sm="row" layout-align-gt-sm="space-around center">   
                 
                 <div class="submitLeft" layout="column">
                     <md-input-container>
@@ -35,7 +35,7 @@
             <div class="whereContainer" layout="row" layout-align="center center">
                 <fieldset >
                     <legend>Sede *</legend>
-                    <div layout="row" layout-align="space-between center" layout-wrap required>
+                    <div layout="column" layout-gt-sm="row" layout-align="center start" layout-align-gt-sm="space-between center" layout-wrap required>
                         <md-checkbox class="md-primary" ng-checked="submitPlant.existsInSede(sede)" aria-label="{{ sede }}" ng-click="submitPlant.existsInSede.toggleSelection(sede)"  ng-repeat="sede in submitPlant.sedes">
                             {{ sede }}
                         </md-checkbox>
@@ -43,7 +43,7 @@
                 </fieldset>
             </div>
             
-            <div class="imageContainer" layout="column" layout-align="center center">
+            <div class="imageContainer" layout="column" layout-align-gt-sm="center center">
                 <div class="userImageContainer" layout="column" layout-align="center center">
                   <div class="contImg" layout="row" layout-align="center center" layout-wrap>
                     <div class="userImage" ng-repeat="image in submitPlant.plantImages" ng-if="submitPlant.hasImage() === true">
@@ -73,11 +73,11 @@
                 </md-input-container>
             </div>
             
-            <div class="descriptionContainer" layout="row" layout-align="space-around center">
+            <div class="descriptionContainer" layout="column" layout-gt-sm="row" layout-align-gt-sm="space-around center">
                 <div flex="40">
                     <md-input-container>
                         <label>Descripción</label>
-                        <textarea name="descripcion" rows="5" ng-model="submitPlant.plant.descripcion" md-maxlength="300"></textarea>
+                        <textarea name="descripcion" ng-model="submitPlant.plant.descripcion" md-maxlength="900"></textarea>
                     </md-input-container>                   
                 </div>
                 <div flex="40">
@@ -89,7 +89,7 @@
                 </div>
             </div>
             
-            <div class="positionContainer" layout="column" layout-align="space-around center">
+            <div class="positionContainer" layout="column" layout-align-gt-sm="space-around center">
                 <p>Separe cada coordenada con una coma ','</p>
                 <md-input-container>
                     <label>Latitud</label>
@@ -101,6 +101,9 @@
                 </md-input-container>
             </div>
             
+            <div layout="row" layout-align="center center">
+                <md-progress-circular md-mode="{{submitPlant.progress}}" ng-show="submitPlant.progress"></md-progress-circular>
+            </div>
             
             <div class="buttonContainer" layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised" ng-disabled="!submitForm.$valid">Enviar</md-button>      

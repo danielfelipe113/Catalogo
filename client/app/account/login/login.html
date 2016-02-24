@@ -4,10 +4,8 @@
   <div class="contentContainer loginContainer">
     <div class="titleContainer" layout="column" layout-align="center center">
       <h1>Iniciar sesión</h1>
-      <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
-      <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>
     </div>
-    <form class="loginForm" name="form" ng-submit="vm.login(form)" novalidate layout="column" layout-align="center center">
+    <form class="loginForm" name="form" ng-submit="vm.login(form)" novalidate layout="column" layout-align="center center" >
       <md-input-container>
         <label>Email</label>
         <input type="email" name="email" ng-model="vm.user.email" required>
@@ -24,6 +22,10 @@
           <div ng-message="required">Por favor ingrese su contraseña</div>
         </div>
       </md-input-container>
+
+      <p class="error"> {{ vm.errors.other }} </p>
+      <md-progress-circular md-mode="{{vm.progress}}" ng-show="vm.progress"></md-progress-circular>
+
       <div class="buttons" layout="row">
         <md-button class="md-raised" type="submit">
           Iniciar sesión

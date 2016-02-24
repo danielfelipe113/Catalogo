@@ -15,20 +15,21 @@
                     <p> {{ plantDescription.plant.identificacion.autor }} </p>
                 </div>
             </div>
-            <div class="plantContainer" layout="row" layout-align="space-between start">
+            <div class="plantContainer" layout="column" layout-gt-xs="row" layout-align="center center" layout-align-gt-sx="space-between start">
                 <div class="plantTexts" flex="55">
                     <div class="descripcionContainer">
+                        Descripción botánica: 
                         <p> {{ plantDescription.plant.descripcion }} </p>
                     </div>
                     <div class="usos" layout="column">
                         Usos:
-                        <div layout="row">
+                        <div layout="row" layout-wrap>
                             <p ng-repeat="item in plantDescription.plant.usos">{{item}}</p>
                         </div>
                     </div>
                     <div class="sede" layout="column">
                         Sedes donde se puede encontrar:
-                        <div layout="row">
+                        <div layout="row" layout-wrap>
                             <p ng-repeat="sede in plantDescription.plant.sede"> {{ sede }} </p>
                         </div>
                     </div>                    
@@ -36,7 +37,7 @@
                 <div flex="10"></div>
                 <div class="plantPicture md-whiteframe-2dp" flex="35">
                     <div class="image" layout="row" layout-align="space-around center" layout-wrap>
-                        <img ng-repeat="item in plantDescription.plant.foto.imagenUrl" src="{{item}}">
+                        <img ng-repeat="item in plantDescription.plant.foto.imagenUrl" src="{{item}}" flex="noshrink">
                     </div>
                     <div class="autor" layout="row" layout-align="center center">
                         <p class="pictureAuthor"> {{ plantDescription.plant.foto.creditoFoto }} </p>

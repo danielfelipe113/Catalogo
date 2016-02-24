@@ -8,19 +8,22 @@ class SettingsController {
 
   constructor(Auth) {
     this.Auth = Auth;
+    this.progress = '';
   }
 
   changePassword(form) {
     this.submitted = true;
 
     if (form.$valid) {
+      this.progress = 'indeterminate';
       this.Auth.changePassword(this.user.oldPassword, this.user.newPassword)
         .then(() => {
-          this.message = 'Password successfully changed.';
+          console.log('hola')
+          this.message = 'Contraseña cambiada satisfactoriamente.';
         })
         .catch(() => {
           form.password.$setValidity('mongoose', false);
-          this.errors.other = 'Incorrect password';
+          this.errors.other = 'Contraseña incorrecta';
           this.message = '';
         });
     }

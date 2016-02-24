@@ -10,6 +10,7 @@ angular.module('catalogoApp')
     vm.sedeSelected = [];
     vm.plantImages = [];
     vm.imagess = [];
+    vm.progress = '';
 
 //functions
 
@@ -143,6 +144,7 @@ angular.module('catalogoApp')
   };
 
 function submit(){
+  vm.progress = 'indeterminate';
   var latitude = vm.coord.lat.split(',');
   var longitude = vm.coord.lng.split(',');
   var plantUses = vm.uses.split(',');

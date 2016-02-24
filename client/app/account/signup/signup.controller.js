@@ -10,12 +10,14 @@ class SignupController {
   constructor(Auth, $state) {
     this.Auth = Auth;
     this.$state = $state;
+    this.progress = '';
   }
 
   register(form) {
     this.submitted = true;
 
     if (form.$valid) {
+      this.progress = 'indeterminate';
       this.Auth.createUser({
         name: this.user.name,
         email: this.user.email,

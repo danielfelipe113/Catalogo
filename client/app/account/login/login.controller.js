@@ -10,12 +10,14 @@ class LoginController {
   constructor(Auth, $state) {
     this.Auth = Auth;
     this.$state = $state;
+    this.progress = '';
   }
 
   login(form) {
     this.submitted = true;
 
     if (form.$valid) {
+      this.progress = 'indeterminate';
       this.Auth.login({
         email: this.user.email,
         password: this.user.password

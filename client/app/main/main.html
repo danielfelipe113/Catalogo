@@ -31,7 +31,7 @@
     </div>
     
     <div class="searchResults" layout="row" layout-align="center center" layout-wrap>
-      <md-content class="cardContainer" flex="30" ng-repeat="plant in main.searchResults | orderBy: identificacion.familia">  
+      <md-content class="cardContainer" flex-gt-sm="30" flex-sm="50" flex-xs="100" ng-repeat="plant in main.searchResults | orderBy: identificacion.familia">  
         <a href="" ui-sref="plantDescription({id:plant._id})">
           <md-card>
             <img src="{{ plant.foto.imagenUrl[0] }}" class="md-card-image">
